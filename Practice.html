@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 55px; 
+        }
+
+        .button {
+            border: 3px solid white; 
+            color: white;
+            padding: 15px 32px; 
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            background-color: black;
+            transition: background-color 0.3s ease;
+        }
+
+        .button1 {
+            margin-left: 10px; 
+        }
+
+        .button:hover {
+            background-color: grey;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 55px; 
+        }
+
+        .question {
+            display: none;
+            margin-bottom: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .options {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option {
+            background-color: #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .option:hover {
+            background-color: #ccc;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Button Styles */
+        .quiz-button,
+        #backToPractice {
+            background-color: black;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .quiz-button:hover,
+        #backToPractice:hover {
+            background-color: grey;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #backToPractice {
+            margin-top: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 80px; 
+        }
+
+        #submitButton,
+        #nextButton {
+            margin-right: 40px;
+            margin-top: 30px; 
+        }
+
+        #unitButtons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-top: 90px;
+        }
+
+        .quiz-button {
+            margin-right: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="header">
+        <a href="HomePage.html" class="button button1">Home</a>
+    </div>
+
+    <h1 id="quizTitle" style="text-align: center; margin-top: -60px; color:white;">Practice</h1>
+
+    <div class="content">
+        <div id="unitButtons">
+            <button class="quiz-button" onclick="startUnitQuiz('unit1')">Unit 1 Quiz</button>
+            <button class="quiz-button" onclick="startUnitQuiz('unit2')">Unit 2 Quiz</button>
+            <button class="quiz-button" onclick="startUnitQuiz('unit3')">Unit 3 Quiz</button>
+            <button class="quiz-button" onclick="startUnitQuiz('unit4')">Unit 4 Quiz</button>
+            <button class="quiz-button" onclick="startUnitQuiz('unit5')">Unit 5 Quiz</button>
+            <button class="quiz-button" onclick="startFinalQuiz()">Final Quiz</button>
+        </div>
+
+        <div class="button-container">
+            <button id="submitButton" class="quiz-button hidden" onclick="submitAnswer()" disabled>Submit</button>
+            <button id="nextButton" class="quiz-button hidden" onclick="displayNextUnitQuestion()" disabled>Next Question</button>
+        </div>
+        <button id="finishButton" class="quiz-button hidden" onclick="finishQuiz()">Finish Quiz</button>
+        <button id="restartButton" class="quiz-button hidden" onclick="restartQuiz()">Restart Quiz</button>
+        <a id="backToPractice" class="quiz-button hidden" href="Practice.html">Back to Practice</a>
+
+        <script>document.getElementById('backToPractice').style.display = 'none';</script>
+    </div>
+          <!-- Question 1 -->
+        <div id="question1" class="question">
+            <p>Which of the following is NOT a characteristic of a perfectly competitive market?</p>
+            <div class="options">
+                <div class="option">
+                    <label><input type="radio" name="q1" value="1" onclick="checkAnswer(1, 1)"> a) Large number of buyers and sellers</label>
+                </div>
+                <div class="option">
+                    <label><input type="radio" name="q1" value="2" onclick="checkAnswer(1, 2)"> b) Homogeneous products</label>
+                </div>
+                <div class="option">
+                    <label><input type="radio" name="q1" value="3" onclick="checkAnswer(1, 3)"> c) Free entry and exit</label>
+                </div>
+                <div class="option">
+                    <label><input type="radio" name="q1" value="4" onclick="checkAnswer(1, 4)"> d) No price discrimination</label>
+                </div>
+            </div>
+            <div id="feedback1" class="feedback"></div>
+        </div>
+
+     <!-- Question 2 -->
+<div id="question2" class="question">
+    <p> A company experiences economies of scale. This means:</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q2" value="1" onclick="checkAnswer(2, 1)"> a) The average cost of production increases as output increases.</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q2" value="2" onclick="checkAnswer(2, 2)"> b) The average cost of production remains constant as output increases.</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q2" value="3" onclick="checkAnswer(2, 3)"> c) The average cost of production decreases as output increases.</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q2" value="4" onclick="checkAnswer(2, 4)"> d) The marginal cost of production increases as output increases.</label>
+        </div>
+    </div>
+    <div id="feedback2" class="feedback"></div>
+</div>
+
+ <!-- Question 3 -->
+<div id="question3" class="question">
+    <p> According to Maslow's hierarchy of needs, which need comes first?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q3" value="1" onclick="checkAnswer(3, 1)"> a) Esteem and self-actualization needs</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q3" value="2" onclick="checkAnswer(3, 2)"> b) Safety and security needs</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q3" value="3" onclick="checkAnswer(3, 3)"> c) Social needs</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q3" value="4" onclick="checkAnswer(3, 4)"> d) Physiological needs</label>
+        </div>
+    </div>
+    <div id="feedback3" class="feedback"></div>
+</div>
+
+ <!-- Question 4 -->
+<div id="question4" class="question">
+    <p> Which of the following is NOT a benefit of outsourcing?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q4" value="1" onclick="checkAnswer(4, 1)"> a) Access to specialized skills and resources</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q4" value="2" onclick="checkAnswer(4, 2)"> b) Reduced costs</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q4" value="3" onclick="checkAnswer(4, 3)"> c) Increased control over production</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q4" value="4" onclick="checkAnswer(4, 4)"> d) Improved market responsiveness</label>
+        </div>
+    </div>
+    <div id="feedback4" class="feedback"></div>
+</div>
+
+<!-- Question 5 -->
+<div id="question5" class="question">
+    <p> Corporate social responsibility (CSR) refers to:</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q5" value="1" onclick="checkAnswer(5, 1)"> a) The obligations of a corporation to its shareholders only.</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q5" value="2" onclick="checkAnswer(5, 2)"> b) The actions that a corporation takes to minimize its negative impact on society and the environment.</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q5" value="3" onclick="checkAnswer(5, 3)"> c) The ways in which a corporation can maximize its profits without regard to ethical considerations.</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q5" value="4" onclick="checkAnswer(5, 4)"> d) The government regulations that apply to corporations.</label>
+        </div>
+    </div>
+    <div id="feedback5" class="feedback"></div>
+</div>
+<!-- Question 6 -->
+<div id="question6" class="question">
+    <p> A company using the balanced scorecard approach to performance measurement would likely consider:</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q6" value="1" onclick="checkAnswer(6, 1)"> a) Financial measures only</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q6" value="2" onclick="checkAnswer(6, 2)"> b) A mix of financial and non-financial measures</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q6" value="3" onclick="checkAnswer(6, 3)"> c) Customer satisfaction alone</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q6" value="4" onclick="checkAnswer(6, 4)"> d) Employee morale alone</label>
+        </div>
+    </div>
+    <div id="feedback6" class="feedback"></div>
+</div>
+
+<!-- Question 7 -->
+<div id="question7" class="question">
+    <p>Which of the following is NOT a characteristic of a bureaucratic organizational structure?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q7" value="1" onclick="checkAnswer(7, 1)"> a) Clearly defined hierarchy of authority</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q7" value="2" onclick="checkAnswer(7, 2)"> b) Formal rules and procedures</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q7" value="3" onclick="checkAnswer(7, 3)"> c) Specialization of tasks</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q7" value="4" onclick="checkAnswer(7, 4)"> d) Emphasis on creativity and innovation</label>
+        </div>
+    </div>
+    <div id="feedback7" class="feedback"></div>
+</div>
+<!-- Question 8 -->
+<div id="question8" class="question">
+    <p>A company uses market penetration pricing. This means:</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q8" value="1" onclick="checkAnswer(8, 1)"> a) Setting a high price to skim the market</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q8" value="2" onclick="checkAnswer(8, 2)"> b) Setting a low price to quickly enter a new market</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q8" value="3" onclick="checkAnswer(8, 3)"> c) Setting a price that is similar to competitors</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q8" value="4" onclick="checkAnswer(8, 4)"> d) Setting a price based on cost of production</label>
+        </div>
+    </div>
+    <div id="feedback8" class="feedback"></div>
+</div>
+
+      <!-- Question 9 -->
+<div id="question9" class="question">
+    <p> Which of the following is NOT a stage in the product life cycle?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q9" value="1" onclick="checkAnswer(9, 1)"> a) Introduction</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q9" value="2" onclick="checkAnswer(9, 2)"> b) Growth</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q9" value="3" onclick="checkAnswer(9, 3)"> c) Maturity</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q9" value="4" onclick="checkAnswer(9, 4)"> d) Renewal</label>
+        </div>
+    </div>
+    <div id="feedback9" class="feedback"></div>
+</div>
+
+
+<!-- Question 10 -->
+<div id="question10" class="question">
+    <p> An effective marketing strategy should be:</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q10" value="1" onclick="checkAnswer(10, 1)"> a) Product-oriented only</label>
+        </div>
+        <div class="option"> <!-- Fixed: Added equals sign after class -->
+            <label><input type="radio" name="q10" value="2" onclick="checkAnswer(10, 2)"> b) Price-oriented only</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q10" value="3" onclick="checkAnswer(10, 3)"> c) Promotion-oriented only</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q10" value="4" onclick="checkAnswer(10, 4)"> d) Based on a clear understanding of customer needs and market trends</label>
+        </div>
+    </div>
+    <div id="feedback10" class="feedback"></div>
+</div>
+  <!-- Question 11 -->
+<div id="question11" class="question">
+    <p> What is the purpose of a SWOT analysis?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q11" value="1" onclick="checkAnswer(11, 1)"> a) Evaluate the internal and external environment of a company</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q11" value="2" onclick="checkAnswer(11, 2)"> b) Calculate financial ratios</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q11" value="3" onclick="checkAnswer(11, 3)"> c) Conduct market research</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q11" value="4" onclick="checkAnswer(11, 4)"> d) Develop a pricing strategy</label>
+        </div>
+    </div>
+    <div id="feedback11" class="feedback"></div>
+</div>
+
+<!-- Question 12 -->
+<div id="question12" class="question">
+    <p>In the context of marketing, what does the acronym "ROI" stand for?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q12" value="1" onclick="checkAnswer(12, 1)"> a) Return on Investment</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q12" value="2" onclick="checkAnswer(12, 2)"> b) Risk of Inflation</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q12" value="3" onclick="checkAnswer(12, 3)"> c) Reach of Interaction</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q12" value="4" onclick="checkAnswer(12, 4)"> d) Revenue from Online Initiatives</label>
+        </div>
+    </div>
+    <div id="feedback12" class="feedback"></div>
+</div>
+
+<!-- Question 13 -->
+<div id="question13" class="question">
+    <p> What is the purpose of a balance sheet?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q13" value="1" onclick="checkAnswer(13, 1)"> a) Assess a company's profitability</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q13" value="2" onclick="checkAnswer(13, 2)"> b) Summarize a company's financial position at a specific point in time</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q13" value="3" onclick="checkAnswer(13, 3)"> c) Analyze market trends</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q13" value="4" onclick="checkAnswer(13, 4)"> d) Evaluate customer satisfaction</label>
+        </div>
+    </div>
+    <div id="feedback13" class="feedback"></div>
+</div>
+
+    <!-- Question 14 -->
+<div id="question14" class="question">
+    <p> What is the marketing mix?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q14" value="1" onclick="checkAnswer(14, 1)"> a) The combination of product, price, place, and promotion</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q14" value="2" onclick="checkAnswer(14, 2)"> b) The variety of products offered by a company</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q14" value="3" onclick="checkAnswer(14, 3)"> c) The market share of a company</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q14" value="4" onclick="checkAnswer(14, 4)"> d) The number of distribution channels used by a company</label>
+        </div>
+    </div>
+    <div id="feedback14" class="feedback"></div>
+</div>
+
+     
+<!-- Question 15 -->
+<div id="question15" class="question">
+    <p> What is the purpose of a focus group in market research?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q15" value="1" onclick="checkAnswer(15, 1)"> a) Collect quantitative data</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q15" value="2" onclick="checkAnswer(15, 2)"> b) Test a new product in the market</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q15" value="3" onclick="checkAnswer(15, 3)"> c) Gather qualitative insights from a diverse group of participants</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q15" value="4" onclick="checkAnswer(15, 4)"> d) Assess a company's financial performance</label>
+        </div>
+    </div>
+    <div id="feedback15" class="feedback"></div>
+</div>
+
+<div id="unit1-questions" class="questions-section">
+
+    <!-- Unit 1 - Question 16 -->
+<div id="question16" class="question">
+    <p>What is the term for the process of setting goals, developing strategies, and determining actions to achieve organizational objectives?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q16" value="1" onclick="checkAnswer(16, 1)"> a) Human resource management</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q16" value="2" onclick="checkAnswer(16, 2)"> b) Strategic planning</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q16" value="3" onclick="checkAnswer(16, 3)"> c) Financial accounting</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q16" value="4" onclick="checkAnswer(16, 4)"> d) Operational control</label>
+        </div>
+    </div>
+    <div id="feedback16" class="feedback"></div>
+</div>
+
+<!-- Unit 1 - Question 17 -->
+<div id="question17" class="question">
+    <p>Which of the following is NOT considered an internal stakeholder in a business organization?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q17" value="1" onclick="checkAnswer(17, 1)"> a) Employees</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q17" value="2" onclick="checkAnswer(17, 2)"> b) Shareholders</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q17" value="3" onclick="checkAnswer(17, 3)"> c) Customers</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q17" value="4" onclick="checkAnswer(17, 4)"> d) Government regulators</label>
+        </div>
+    </div>
+    <div id="feedback17" class="feedback"></div>
+</div>
+
+<!-- Unit 1 - Question 18 -->
+<div id="question18" class="question">
+    <p>In the context of business management, what does the acronym SWOT stand for?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q18" value="1" onclick="checkAnswer(18, 1)"> a) Sales, Workforce, Operations, Technology</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q18" value="2" onclick="checkAnswer(18, 2)"> b) Strengths, Weaknesses, Opportunities, Threats</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q18" value="3" onclick="checkAnswer(18, 3)"> c) Strategies, Workflows, Objectives, Targets</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q18" value="4" onclick="checkAnswer(18, 4)"> d) Sustainable, Worldwide, Organizational, Trends</label>
+        </div>
+    </div>
+    <div id="feedback18" class="feedback"></div>
+</div>
+
+<!-- Unit 1 - Question 19 -->
+<div id="question19" class="question">
+    <p>What is the term for the formal system of task and authority relationships within an organization?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q19" value="1" onclick="checkAnswer(19, 1)"> a) Organizational culture</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q19" value="2" onclick="checkAnswer(19, 2)"> b) Business ethics</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q19" value="3" onclick="checkAnswer(19, 3)"> c) Corporate social responsibility</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q19" value="4" onclick="checkAnswer(19, 4)"> d) Organizational structure</label>
+        </div>
+    </div>
+    <div id="feedback19" class="feedback"></div>
+</div>
+
+<!-- Unit 1 - Question 20 -->
+<div id="question20" class="question">
+    <p>Which function of management involves the process of attracting, developing, and retaining the right people in the organization?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q20" value="1" onclick="checkAnswer(20, 1)"> a) Planning</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q20" value="2" onclick="checkAnswer(20, 2)"> b) Organizing</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q20" value="3" onclick="checkAnswer(20, 3)"> c) Leading</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q20" value="4" onclick="checkAnswer(20, 4)"> d) Controlling</label>
+        </div>
+    </div>
+    <div id="feedback20" class="feedback"></div>
+</div>
+
+<!-- Unit 2 -->
+<div id="question21" class="question">
+    <p>What process involves evaluating and selecting suitable individuals to fill job openings within an organization?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q21" value="1" onclick="checkAnswer(21, 1)"> a) Training and development</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q21" value="2" onclick="checkAnswer(21, 2)"> b) Recruitment and selection</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q21" value="3" onclick="checkAnswer(21, 3)"> c) Performance appraisal</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q21" value="4" onclick="checkAnswer(21, 4)"> d) Succession planning</label>
+        </div>
+    </div>
+    <div id="feedback21" class="feedback"></div>
+</div>
+
+<div id="question22" class="question">
+    <p>Which organizational function focuses on designing the structure of tasks, roles, and relationships to achieve organizational goals?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q22" value="1" onclick="checkAnswer(22, 1)"> a) Marketing</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q22" value="2" onclick="checkAnswer(22, 2)"> b) Finance</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q22" value="3" onclick="checkAnswer(22, 3)"> c) Operations</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q22" value="4" onclick="checkAnswer(22, 4)"> d) Organizing</label>
+        </div>
+    </div>
+    <div id="feedback22" class="feedback"></div>
+</div>
+
+<div id="question23" class="question">
+    <p>What term is used to describe the formal system of authority and task relationships within an organization?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q23" value="1" onclick="checkAnswer(23, 1)"> a) Organizational culture</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q23" value="2" onclick="checkAnswer(23, 2)"> b) Organizational structure</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q23" value="3" onclick="checkAnswer(23, 3)"> c) Strategic planning</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q23" value="4" onclick="checkAnswer(23, 4)"> d) Employee engagement</label>
+        </div>
+    </div>
+    <div id="feedback23" class="feedback"></div>
+</div>
+
+<div id="question24" class="question">
+    <p>Which process involves identifying the specific tasks, duties, and responsibilities associated with a particular job?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q24" value="1" onclick="checkAnswer(24, 1)"> a) Recruitment</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q24" value="2" onclick="checkAnswer(24, 2)"> b) Onboarding</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q24" value="3" onclick="checkAnswer(24, 3)"> c) Job analysis</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q24" value="4" onclick="checkAnswer(24, 4)"> d) Performance appraisal</label>
+        </div>
+    </div>
+    <div id="feedback24" class="feedback"></div>
+</div>
+
+<div id="question25" class="question">
+    <p>What is the primary purpose of the recruitment and selection process in Human Resource Management?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q25" value="1" onclick="checkAnswer(25, 1)"> a) Evaluating employee performance</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q25" value="2" onclick="checkAnswer(25, 2)"> b) Determining training needs</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q25" value="3" onclick="checkAnswer(25, 3)"> c) Attracting and hiring suitable candidates</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q25" value="4" onclick="checkAnswer(25, 4)"> d) Administering employee benefits</label>
+        </div>
+    </div>
+    <div id="feedback25" class="feedback"></div>
+</div>
+
+<!-- Unit 3 -->
+<div id="question26" class="question">
+    <p>What term refers to the process of analyzing and interpreting financial information to make informed business decisions?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q26" value="1" onclick="checkAnswer(26, 1)"> a) Budgeting</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q26" value="2" onclick="checkAnswer(26, 2)"> b) Financial analysis</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q26" value="3" onclick="checkAnswer(26, 3)"> c) Risk management</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q26" value="4" onclick="checkAnswer(26, 4)"> d) Marketing strategy</label>
+        </div>
+    </div>
+    <div id="feedback26" class="feedback"></div>
+</div>
+
+<div id="question27" class="question">
+    <p>Which financial statement provides a snapshot of a company's financial position at a specific point in time, including its assets, liabilities, and equity?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q27" value="1" onclick="checkAnswer(27, 1)"> a) Income statement</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q27" value="2" onclick="checkAnswer(27, 2)"> b) Cash flow statement</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q27" value="3" onclick="checkAnswer(27, 3)"> c) Balance sheet</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q27" value="4" onclick="checkAnswer(27, 4)"> d) Statement of retained earnings</label>
+        </div>
+    </div>
+    <div id="feedback27" class="feedback"></div>
+</div>
+
+<div id="question28" class="question">
+    <p>What financial ratio measures a company's ability to meet its short-term obligations with its most liquid assets?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q28" value="1" onclick="checkAnswer(28, 1)"> a) Return on investment (ROI)</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q28" value="2" onclick="checkAnswer(28, 2)"> b) Current ratio</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q28" value="3" onclick="checkAnswer(28, 3)"> c) Debt-to-equity ratio</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q28" value="4" onclick="checkAnswer(28, 4)"> d) Earnings per share (EPS)</label>
+        </div>
+    </div>
+    <div id="feedback28" class="feedback"></div>
+</div>
+
+<div id="question29" class="question">
+    <p>What is the term for the cost associated with producing one additional unit of a product or service?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q29" value="1" onclick="checkAnswer(29, 1)"> a) Fixed cost</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q29" value="2" onclick="checkAnswer(29, 2)"> b) Variable cost</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q29" value="3" onclick="checkAnswer(29, 3)"> c) Total cost</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q29" value="4" onclick="checkAnswer(29, 4)"> d) Marginal cost</label>
+        </div>
+    </div>
+    <div id="feedback29" class="feedback"></div>
+</div>
+
+<div id="question30" class="question">
+    <p>Which financial decision involves determining the optimal mix of debt and equity to finance the company's operations and investments?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q30" value="1" onclick="checkAnswer(30, 1)"> a) Capital budgeting</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q30" value="2" onclick="checkAnswer(30, 2)"> b) Financial forecasting</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q30" value="3" onclick="checkAnswer(30, 3)"> c) Capital structure</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q30" value="4" onclick="checkAnswer(30, 4)"> d) Working capital management</label>
+        </div>
+    </div>
+    <div id="feedback30" class="feedback"></div>
+</div>
+
+<!-- Unit 4 -->
+<div id="question31" class="question">
+    <p>What is the marketing concept that emphasizes understanding and meeting the needs and wants of target customers?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q31" value="1" onclick="checkAnswer(31, 1)"> a) Production orientation</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q31" value="2" onclick="checkAnswer(31, 2)"> b) Selling orientation</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q31" value="3" onclick="checkAnswer(31, 3)"> c) Market orientation</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q31" value="4" onclick="checkAnswer(31, 4)"> d) Product orientation</label>
+        </div>
+    </div>
+    <div id="feedback31" class="feedback"></div>
+</div>
+
+<div id="question32" class="question">
+    <p>Which element of the marketing mix involves activities such as advertising, public relations, and sales promotions to promote a product or service?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q32" value="1" onclick="checkAnswer(32, 1)"> a) Product</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q32" value="2" onclick="checkAnswer(32, 2)"> b) Place</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q32" value="3" onclick="checkAnswer(32, 3)"> c) Price</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q32" value="4" onclick="checkAnswer(32, 4)"> d) Promotion</label>
+        </div>
+    </div>
+    <div id="feedback32" class="feedback"></div>
+</div>
+
+<div id="question33" class="question">
+    <p>What is the term for a group of potential customers with similar needs and characteristics that a business decides to serve?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q33" value="1" onclick="checkAnswer(33, 1)"> a) Market segmentation</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q33" value="2" onclick="checkAnswer(33, 2)"> b) Target market</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q33" value="3" onclick="checkAnswer(33, 3)"> c) Market positioning</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q33" value="4" onclick="checkAnswer(33, 4)"> d) Market penetration</label>
+        </div>
+    </div>
+    <div id="feedback33" class="feedback"></div>
+</div>
+
+<div id="question34" class="question">
+    <p>Which stage of the product life cycle is characterized by a rapid increase in sales, and competitors entering the market?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q34" value="1" onclick="checkAnswer(34, 1)"> a) Introduction</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q34" value="2" onclick="checkAnswer(34, 2)"> b) Growth</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q34" value="3" onclick="checkAnswer(34, 3)"> c) Maturity</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q34" value="4" onclick="checkAnswer(34, 4)"> d) Decline</label>
+        </div>
+    </div>
+    <div id="feedback34" class="feedback"></div>
+</div>
+
+<div id="question35" class="question">
+    <p>What marketing strategy involves setting a high initial price to capitalize on the willingness of early adopters to pay more for a new product?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q35" value="1" onclick="checkAnswer(35, 1)"> a) Penetration pricing</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q35" value="2" onclick="checkAnswer(35, 2)"> b) Skimming pricing</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q35" value="3" onclick="checkAnswer(35, 3)"> c) Competitive pricing</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q35" value="4" onclick="checkAnswer(35, 4)"> d) Promotional pricing</label>
+        </div>
+    </div>
+    <div id="feedback35" class="feedback"></div>
+</div>
+
+<!-- Unit 5 -->
+<div id="question36" class="question">
+    <p>Which term refers to the process of coordinating and integrating all elements of the marketing mix to satisfy customers' needs?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q36" value="1" onclick="checkAnswer(36, 1)"> a) Market segmentation</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q36" value="2" onclick="checkAnswer(36, 2)"> b) Integrated marketing</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q36" value="3" onclick="checkAnswer(36, 3)"> c) Product positioning</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q36" value="4" onclick="checkAnswer(36, 4)"> d) Pricing strategy</label>
+        </div>
+    </div>
+    <div id="feedback36" class="feedback"></div>
+</div>
+
+<div id="question37" class="question">
+    <p>What does the term "supply chain" refer to in the context of business management?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q37" value="1" onclick="checkAnswer(37, 1)"> a) The process of delivering finished goods to retailers</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q37" value="2" onclick="checkAnswer(37, 2)"> b) The network of organizations and activities involved in producing and delivering a product or service to customers</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q37" value="3" onclick="checkAnswer(37, 3)"> c) The distribution channels used by a company</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q37" value="4" onclick="checkAnswer(37, 4)"> d) The pricing strategy used for new products</label>
+        </div>
+    </div>
+    <div id="feedback37" class="feedback"></div>
+</div>
+
+<div id="question38" class="question">
+    <p>Which component of the marketing mix involves making a product or service available to customers in the right place and at the right time?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q38" value="1" onclick="checkAnswer(38, 1)"> a) Product</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q38" value="2" onclick="checkAnswer(38, 2)"> b) Price</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q38" value="3" onclick="checkAnswer(38, 3)"> c) Place</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q38" value="4" onclick="checkAnswer(38, 4)"> d) Promotion</label>
+        </div>
+    </div>
+    <div id="feedback38" class="feedback"></div>
+</div>
+
+<div id="question39" class="question">
+    <p>What term is used to describe the process of transforming inputs into finished goods or services?</p>
+    <div class="options">
+        <div class="option">
+            <label><input type="radio" name="q39" value="1" onclick="checkAnswer(39, 1)"> a) Supply chain management</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q39" value="2" onclick="checkAnswer(39, 2)"> b) Production planning</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q39" value="3" onclick="checkAnswer(39, 3)"> c) Operations strategy</label>
+        </div>
+        <div class="option">
+            <label><input type="radio" name="q39" value="4" onclick="checkAnswer(39, 4)"> d) Process transformation</label>
+        </div>
+    </div>
+    <div id="feedback39" class="feedback"></div>
+</div>
+
+<div id="question40" class="question">
+    <p>In the context of business management, what does the acronym CRM stand for?</p>
+    <div class="options">
+        <div class="option">
+            <label>
+                <input type="radio" name="q40" value="1" onclick="checkAnswer(40, 1)">
+                a) Customer Relationship Management
+            </label>
+        </div>
+        <div class="option">
+            <label>
+                <input type="radio" name="q40" value="2" onclick="checkAnswer(40, 2)">
+                b) Cost Reduction Model
+            </label>
+        </div>
+        <div class="option">
+            <label>
+                <input type="radio" name="q40" value="3" onclick="checkAnswer(40, 3)">
+                c) Creative Resource Management
+            </label>
+        </div>
+        <div class="option">
+            <label>
+                <input type="radio" name="q40" value="4" onclick="checkAnswer(40, 4)">
+                d) Competitive Revenue Maximization
+            </label>
+        </div>
+    </div>
+    <div id="feedback40" class="feedback"></div>
+</div>
+
+<script>
+    const unitQuestions = {
+        unit1: [16, 17, 18, 19, 20],
+        unit2: [21, 22, 23, 24, 25],
+        unit3: [26, 27, 28, 29, 30],
+        unit4: [31, 32, 33, 34, 35],
+        unit5: [36, 37, 38, 39, 40]
+    }
+
+    let completedUnits = {
+        unit1: false,
+        unit2: false,
+        unit3: false,
+        unit4: false,
+        unit5: false
+    };
+
+    let currentUnit = '';
+    let currentUnitQuestionsOrder = [];
+    let currentUnitIndex = 0;
+
+    function startUnitQuiz(unit) {
+        currentUnit = unit;
+
+        // Randomly select questions for each unit
+        if (unit === 'unit1' || unit === 'unit2' || unit === 'unit3' || unit === 'unit4' || unit === 'unit5') {
+            const allUnitQuestions = unitQuestions[unit];
+            shuffleArray(allUnitQuestions);
+            currentUnitQuestionsOrder = allUnitQuestions.slice(0, 4); 
+        } else {
+       
+            currentUnitQuestionsOrder = unitQuestions[unit];
+        }
+
+        shuffleArray(currentUnitQuestionsOrder);
+        currentUnitIndex = 0;
+
+        let unitTitle = '';
+        switch (unit) {
+            case 'unit1':
+                unitTitle = 'Unit 1: Introduction to Business Management Quiz';
+                break;
+            case 'unit2':
+                unitTitle = 'Unit 2: Human Resources Quiz';
+                break;
+            case 'unit3':
+                unitTitle = 'Unit 3: Finance Quiz';
+                break;
+            case 'unit4':
+                unitTitle = 'Unit 4: Marketing Quiz';
+                break;
+            case 'unit5':
+                unitTitle = 'Unit 5: Operations Management Quiz';
+                break;
+            default:
+                unitTitle = 'Practice';
+        }
+        document.getElementById('quizTitle').innerText = unitTitle;
+
+        document.getElementById('submitButton').classList.remove('hidden');
+        document.getElementById('nextButton').classList.remove('hidden');
+        document.getElementById('finishButton').classList.add('hidden');
+        document.getElementById('unitButtons').style.display = 'none';
+        document.getElementById('backToPractice').style.display = 'none';
+        displayNextUnitQuestion();
+    }
+
+    function startFinalQuiz() {
+        currentUnit = 'final';
+
+        const allFinalQuestions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+        shuffleArray(allFinalQuestions);
+        currentUnitQuestionsOrder = allFinalQuestions.slice(0, 11); // Select the first 10 questions after randomizing 
+
+        shuffleArray(currentUnitQuestionsOrder);
+        currentUnitIndex = 0;
+
+        document.getElementById('quizTitle').innerText = 'Final Quiz';
+
+        document.getElementById('submitButton').classList.remove('hidden');
+        document.getElementById('nextButton').classList.remove('hidden');
+        document.getElementById('finishButton').classList.add('hidden');
+        document.getElementById('unitButtons').style.display = 'none';
+        document.getElementById('backToPractice').style.display = 'none';
+        displayNextUnitQuestion();
+    }
+
+    function finishQuiz() {
+        let totalQuestions = currentUnit === 'final' ? 10 : 3;
+        let correctAnswers = 0;
+
+        for (let i = 0; i < totalQuestions; i++) {
+            const questionId = `question${currentUnitQuestionsOrder[i]}`;
+            const options = document.getElementsByName(`q${currentUnitQuestionsOrder[i]}`);
+
+            for (let j = 0; j < options.length; j++) {
+                const optionInput = options[j];
+
+                if (optionInput.checked) {
+                    const selectedOption = parseInt(optionInput.value);
+                    const correctOption = getCorrectOption(currentUnitQuestionsOrder[i]);
+
+                    if (selectedOption === correctOption) {
+                        correctAnswers++;
+                    } else {
+                        options[correctOption - 1].parentNode.style.backgroundColor = 'lightgreen';
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        alert(`Your score: ${correctAnswers} out of ${totalQuestions}`);
+        document.getElementById('backToPractice').style.display = 'block';
+    }
+
+    function restartQuiz() {
+        // Reset quiz state and display the unit buttons
+        currentUnit = '';
+        currentUnitQuestionsOrder = [];
+        currentUnitIndex = 0;
+
+        document.getElementById('unitButtons').style.display = 'flex';
+        document.getElementById('backToPractice').style.display = 'none';
+
+        // Hide buttons and feedback
+        document.getElementById('submitButton').classList.add('hidden');
+        document.getElementById('nextButton').classList.add('hidden');
+        document.getElementById('finishButton').classList.add('hidden');
+        document.getElementById('restartButton').classList.add('hidden');
+
+        // Reset feedback and options
+        for (let i = 0; i < 40; i++) {
+            const questionId = `question${i + 1}`;
+            const feedbackDiv = document.getElementById(`feedback${i + 1}`);
+            const options = document.getElementsByName(`q${i + 1}`);
+
+            feedbackDiv.innerHTML = '';
+            feedbackDiv.style.color = '';
+            for (let j = 0; j < options.length; j++) {
+                options[j].parentNode.style.backgroundColor = '#ddd';
+                options[j].disabled = false;
+                options[j].checked = false;
+            }
+        }
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function submitAnswer() {
+        const questionId = `question${currentUnitQuestionsOrder[currentUnitIndex]}`;
+        const currentQuestion = document.getElementById(questionId);
+        const feedbackDiv = currentQuestion.querySelector('.feedback');
+
+        const options = document.getElementsByName(`q${currentUnitQuestionsOrder[currentUnitIndex]}`);
+        let isAnswerCorrect = false;
+
+        for (let j = 0; j < options.length; j++) {
+            if (options[j].checked) {
+                const selectedOption = parseInt(options[j].value);
+                const correctOption = getCorrectOption(currentUnitQuestionsOrder[currentUnitIndex]);
+
+                isAnswerCorrect = selectedOption === correctOption;
+
+                // Highlight only the selected option within the question box
+                options[j].parentNode.style.backgroundColor = isAnswerCorrect ? 'lightgreen' : 'lightcoral';
+
+                // Update feedback color
+                feedbackDiv.style.color = isAnswerCorrect ? 'green' : 'darkred';
+
+                break;
+            }
+        }
+
+        feedbackDiv.innerHTML = isAnswerCorrect ? 'Correct' : 'Wrong';
+
+        for (let j = 0; j < options.length; j++) {
+            options[j].disabled = true;
+        }
+
+        document.getElementById('nextButton').classList.remove('hidden');
+        document.getElementById('submitButton').classList.remove('hidden');
+    }
+
+    function displayNextUnitQuestion() {
+        const questionId = `question${currentUnitQuestionsOrder[currentUnitIndex]}`;
+        const currentQuestion = document.getElementById(questionId);
+
+        currentQuestion.style.display = 'none';
+        currentUnitIndex++;
+
+        if (currentUnitIndex < currentUnitQuestionsOrder.length) {
+            const nextQuestionId = `question${currentUnitQuestionsOrder[currentUnitIndex]}`;
+            const nextQuestion = document.getElementById(nextQuestionId);
+            nextQuestion.style.display = 'block';
+        } else {
+            document.getElementById('nextButton').classList.add('hidden');
+            document.getElementById('submitButton').classList.add('hidden');
+            document.getElementById('finishButton').classList.remove('hidden');
+            document.getElementById('backToPractice').style.display = 'block';
+        }
+
+        document.getElementById('nextButton').disabled = false;
+        document.getElementById('submitButton').disabled = false;
+    }
+
+    function getCorrectOption(questionNumber) {
+        const correctOptions = {
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 3,
+            5: 2,
+            6: 2,
+            7: 4,
+            8: 2,
+            9: 4,
+            10: 4,
+            11: 1,
+            12: 1,
+            13: 2,
+            14: 1,
+            15: 3,
+            16: 2,
+            17: 1,
+            18: 2,
+            19: 4,
+            20: 3,
+            21: 2,
+            22: 3,
+            23: 2,
+            24: 1,
+            25: 3,
+            26: 2,
+            27: 3,
+            28: 2,
+            29: 4,
+            30: 3,
+            31: 3,
+            32: 4,
+            33: 2,
+            34: 2,
+            35: 2,
+            36: 2,
+            37: 2,
+            38: 4,
+            39: 2,
+            40: 1,
+        };
+
+        return correctOptions[questionNumber];
+    }
+</script>
+</body>
+
+</html>
+
+

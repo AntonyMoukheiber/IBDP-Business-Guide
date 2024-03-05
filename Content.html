@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 55px; 
+            
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .button-container {
+            padding: 20px;
+            display: flex;
+        }
+
+        .button {
+            border: 3px solid white;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: black;
+            transition: background-color 0.3s ease;
+            margin-bottom: 90px;
+        }
+
+        .button:hover {
+            background-color: grey;
+        }
+
+        .home-button {
+            margin-right: 20px;
+            margin-top: 90px; 
+        }
+
+        .profile {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .content {
+            margin-left: 10px;
+        }
+
+        .pdf-container {
+            width: 100%;
+            height: 735px;
+        }
+    </style>
+    <script>
+        function showPdf(pdfUrl, unitTitle) {
+            console.log('Opening PDF:', pdfUrl);
+            var pdfContainer = document.getElementById('pdf-container');
+            pdfContainer.innerHTML = '<object data="' + pdfUrl + '" type="application/pdf" class="pdf-container"></object>';
+            
+            var heading = document.getElementById('unit-heading');
+            heading.innerHTML = unitTitle;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <a href="HomePage.html" class="button button1 home-button">Home</a>
+    </div>
+
+    <h1 id="unit-heading" style="text-align: center; margin-top: -60px; color:white;">Select a Unit</h1>
+
+    <div class="button-container">
+        <div class="button-group">
+            <button class="button button1" onclick="showPdf('Business HL Unit 1 Notes.pdf', 'Unit 1: Introduction To Business Management')">Unit 1</button>
+            <button class="button button1" onclick="showPdf('Business HL Unit 2 Notes.pdf', 'Unit 2: Human Resources')">Unit 2</button>
+            <button class="button button1" onclick="showPdf('Business HL Unit 3 Notes.pdf', 'Unit 3: Finance')">Unit 3</button>
+            <button class="button button1" onclick="showPdf('Business HL Unit 4 Notes.pdf', 'Unit 4: Marketing')">Unit 4</button>
+            <button class="button button1" onclick="showPdf('Business HL Unit 5 Notes.pdf', 'Unit 5: Operations Management')">Unit 5</button>
+        </div>
+
+        <div id="pdf-container" class="content pdf-container">
+        </div>
+    </div>
+</body>
+
+</html>

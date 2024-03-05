@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background: url('BusinessPage.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-title {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .button {
+            border: 3px solid white;
+            margin-top: 100px;
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: black;
+            transition: background-color 0.3s ease;
+            width: 120px; 
+        }
+
+        .logout-button {
+            border: 3px solid white;
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: black;
+            transition: background-color 0.3s ease;
+            width: auto; 
+        }
+
+        .button:hover, .logout-button:hover {
+            background-color: #555;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .title-container {
+            text-align: center;
+            padding: 10px;
+            flex-grow: 1;
+        }
+
+        .title-text {
+            font-size: 30px;
+            color: white;
+            margin: 0;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .button-separator {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="Login.html" class="logout-button">Log Out</a>
+        <div class="title-container">
+            <h1 class="title-text">DP Business Management HL GuideHub</h1>
+        </div>
+    </div>
+
+    <div class="button-container button-separator">
+        <a href="Content.html" class="button button1">Content</a>
+        <a href="Formulas.html" class="button button1">Formulas</a>
+        <a href="Practice.html" class="button button1">Practice</a>
+    </div>
+</body>
+
+</html>
